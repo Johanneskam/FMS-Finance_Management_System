@@ -1,0 +1,909 @@
+/* ==========================================================================
+   FMS Design System — the ONE shared styling for every screen.
+   Loaded globally (renderer/index.html), available to every component
+   without re-declaring cards/tables/buttons/etc. Component-specific files
+   should only contain layout and truly one-off styling from here on —
+   anything reusable belongs in this file instead of being copy-pasted again.
+   ========================================================================== */
+
+:root {
+  /* ---- brand palette (matches the existing cyan/gold background exactly — untouched) ---- */
+  --c-cyan: #06b6d4;
+  --c-cyan-dark: #0e7490;
+  /* ---- sidebar/background colors — reverted to match the original
+     sidebar_admin.php/sidebar_secretary.php prototype (light frosted
+     glass sidebar, cyan-gold gradient page background). The persistent
+     always-visible sidebar STRUCTURE from the Money Pay layout stays;
+     only the color treatment reverted. ---- */
+  --c-sidebar-bg: rgba(255, 255, 255, 0.97);
+  --c-sidebar-border: rgba(6, 182, 212, 0.2);
+  --c-page-bg: #f5f6f8;
+  --c-teal: #154a4a;
+  --c-gold: #f59e0b;
+  --c-gold-dark: #d97706;
+
+  /* ---- ink / neutrals ---- */
+  --c-ink: #1a202c;
+  --c-ink-soft: #374151;
+  --c-muted: #6b7280;
+  --c-faint: #9ca3af;
+  --c-border: #ece5d6;
+  --c-border-soft: #f3f4f6;
+  --c-surface: #ffffff;
+  --c-surface-flat: #f7fafc;
+
+  /* ---- status colors (used consistently everywhere: badges, health states, toggles) ---- */
+  --c-success: #16a34a;
+  --c-success-bg: #f0fdf4;
+  --c-warning: #d97706;
+  --c-warning-bg: #fffbeb;
+  --c-danger: #dc2626;
+  --c-danger-bg: #fef2f2;
+  --c-info: #2563eb;
+  --c-info-bg: #eff6ff;
+  --c-purple: #7c3aed;
+  --c-purple-bg: #f5f3ff;
+
+  /* ---- spacing scale ---- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+
+  /* ---- radius scale ---- */
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1.25rem;
+  --r-xl: 1.75rem;
+  --r-pill: 999px;
+
+  /* ---- shadow scale ---- */
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 20px 40px -16px rgba(15, 23, 42, 0.14);
+  --shadow-lg: 0 28px 52px -16px rgba(15, 23, 42, 0.2);
+
+  --gradient-brand: linear-gradient(135deg, var(--c-cyan), var(--c-gold));
+  --gradient-action: linear-gradient(135deg, var(--c-cyan), var(--c-cyan-dark));
+
+  --font-sans: 'Segoe UI', ui-sans-serif, Roboto, -apple-system, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+}
+
+* { box-sizing: border-box; }
+
+/* ---- global focus-visible ring (accessibility — was entirely missing before) ---- */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--c-cyan);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* ---- thin styled scrollbars (Chromium/Electron-safe) ---- */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d8d0c0; border-radius: var(--r-pill); }
+::-webkit-scrollbar-thumb:hover { background: #c9bfa8; }
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+.ent-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 22px;
+  padding: 1.4rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.ent-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--gradient-brand);
+}
+.ent-card--hover:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.ent-card--flat { box-shadow: var(--shadow-sm); border: 1px solid var(--c-border); }
+
+/* Hero/welcome-style card — faint full-tint overlay instead of a top bar */
+.ent-card-hero {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 22px;
+  padding: var(--sp-8);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.ent-card-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gradient-brand);
+  opacity: 0.05;
+  z-index: 0;
+}
+.ent-card-hero > * { position: relative; z-index: 1; }
+
+.ent-card-title {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: 0.95rem; font-weight: 700; color: var(--c-ink);
+  margin: 0 0 var(--sp-4);
+}
+.ent-card-title svg { color: var(--c-cyan); flex-shrink: 0; }
+.ent-card-head {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-4);
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.ent-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--r-sm);
+  font-size: 0.85rem; font-weight: 600;
+  border: none; cursor: pointer;
+  font-family: var(--font-sans);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.ent-btn:disabled { opacity: 0.6; cursor: default; pointer-events: none; }
+.ent-btn--primary { background: var(--gradient-action); color: #fff; box-shadow: 0 4px 10px rgba(6, 182, 212, 0.3); }
+.ent-btn--primary:hover { transform: translateY(-1px); }
+.ent-btn--secondary { background: var(--c-surface-flat); color: var(--c-ink-soft); border: 1px solid var(--c-border); }
+.ent-btn--secondary:hover { background: #fff; }
+.ent-btn--danger { background: var(--c-danger-bg); color: var(--c-danger); border: 1px solid #fecaca; }
+.ent-btn--ghost { background: rgba(6, 182, 212, 0.1); color: var(--c-cyan); }
+.ent-btn--pill { border-radius: var(--r-pill); }
+.ent-btn--sm { padding: 0.4rem 0.85rem; font-size: 0.76rem; }
+.ent-btn--icon { width: 30px; height: 30px; padding: 0; border-radius: 50%; }
+.ent-icon-btn { width: 28px; height: 28px; border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s ease; }
+.ent-icon-btn:hover { transform: scale(1.08); }
+.ent-icon-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+.ent-icon-btn--blue { background: #dbeafe; color: #2563eb; }
+.ent-icon-btn--amber { background: #fef3c7; color: #d97706; }
+.ent-icon-btn--purple { background: #ede9fe; color: #7c3aed; }
+.ent-icon-btn--red { background: var(--c-danger-bg); color: var(--c-danger); }
+
+/* ==========================================================================
+   BADGES
+   ========================================================================== */
+.ent-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 10px; border-radius: var(--r-pill);
+  font-size: 0.68rem; font-weight: 700; color: #fff;
+  white-space: nowrap;
+}
+.ent-badge--success { background: var(--c-success); }
+.ent-badge--warning { background: var(--c-warning); }
+.ent-badge--danger { background: var(--c-danger); }
+.ent-badge--info { background: var(--c-info); }
+.ent-badge--purple { background: var(--c-purple); }
+.ent-badge--muted { background: var(--c-faint); }
+.ent-badge--soft { color: var(--c-cyan-dark); background: #cffafe; }
+
+/* ==========================================================================
+   ENTERPRISE TABLES
+   sticky header, row hover, optional zebra striping, responsive scroll
+   ========================================================================== */
+.ent-table-wrap {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  overflow: auto;
+  max-width: 100%;
+}
+table.ent-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.82rem;
+}
+table.ent-table thead th {
+  position: sticky; top: 0; z-index: 1;
+  text-align: left;
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--c-faint); font-weight: 700;
+  background: #fafaf8;
+  padding: var(--sp-3) var(--sp-3);
+  border-bottom: 1px solid var(--c-border);
+  white-space: nowrap;
+}
+table.ent-table th.ent-th-sortable { cursor: pointer; user-select: none; }
+table.ent-table th.ent-th-sortable:hover { color: var(--c-cyan-dark); }
+table.ent-table tbody td {
+  padding: var(--sp-3);
+  border-bottom: 1px solid var(--c-border-soft);
+  vertical-align: middle;
+  color: var(--c-ink-soft);
+}
+table.ent-table tbody tr:last-child td { border-bottom: none; }
+table.ent-table tbody tr { transition: background 0.12s ease; }
+table.ent-table tbody tr:hover { background: rgba(6, 182, 212, 0.05); }
+table.ent-table.ent-table--zebra tbody tr:nth-child(even) { background: #fafaf8; }
+table.ent-table.ent-table--zebra tbody tr:nth-child(even):hover { background: rgba(6, 182, 212, 0.06); }
+.ent-td-num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.ent-td-mono { font-family: ui-monospace, 'SF Mono', Consolas, monospace; font-size: 0.76rem; color: var(--c-muted); }
+.ent-table-empty { text-align: center; color: var(--c-faint); padding: var(--sp-6) 0; }
+
+/* ==========================================================================
+   TOGGLE SWITCHES — real animated switches, not checkboxes.
+   Use the Toggle.jsx component (renderer/src/components/ui/Toggle.jsx)
+   rather than hand-writing this markup each time.
+   ========================================================================== */
+.ent-toggle-wrap {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  cursor: pointer; user-select: none;
+}
+.ent-toggle-wrap input[type='checkbox'] {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.ent-toggle-track {
+  width: 42px; height: 24px; border-radius: var(--r-pill);
+  background: #d1d5db; position: relative; flex-shrink: 0;
+  transition: background 0.25s ease;
+}
+.ent-toggle-track::after {
+  content: '';
+  position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ent-toggle-wrap input:checked + .ent-toggle-track { background: var(--gradient-action); }
+.ent-toggle-wrap input:checked + .ent-toggle-track::after { transform: translateX(18px); }
+.ent-toggle-wrap input:disabled + .ent-toggle-track { opacity: 0.5; }
+.ent-toggle-wrap input:focus-visible + .ent-toggle-track { outline: 2px solid var(--c-cyan); outline-offset: 2px; }
+.ent-toggle-label { font-size: 0.85rem; color: var(--c-ink-soft); font-weight: 500; }
+
+/* ==========================================================================
+   SIDEBAR — Sidebar.jsx is self-contained (its own <style> tag, fms-*
+   classes) rather than using theme.css, since it was restored to the
+   original design. Nothing sidebar-related belongs here anymore.
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGINATION — found in process_payment.php/secretary_reports.php, genuinely
+   missing from the app until now (every table currently just dumps all rows).
+   ========================================================================== */
+.ent-pagination { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); margin-top: var(--sp-4); flex-wrap: wrap; }
+.ent-pagination-info { font-size: 0.76rem; color: var(--c-muted); }
+.ent-pagination-controls { display: flex; align-items: center; gap: 4px; }
+.ent-page-btn {
+  min-width: 30px; height: 30px; padding: 0 6px; border-radius: var(--r-sm); border: 1px solid var(--c-border);
+  background: #fff; color: var(--c-ink-soft); font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease;
+}
+.ent-page-btn:hover:not(:disabled) { border-color: var(--c-cyan); color: var(--c-cyan-dark); }
+.ent-page-btn:disabled { opacity: 0.4; cursor: default; }
+.ent-page-btn.is-active { background: var(--gradient-action); color: #fff; border-color: transparent; }
+
+/* ==========================================================================
+   AUTOCOMPLETE / SEARCH DROPDOWN — was hand-rolled slightly differently in
+   StudentRegistration.jsx and FinancialCommunication.jsx; one shared version.
+   ========================================================================== */
+.ent-autocomplete { position: relative; }
+.ent-autocomplete-input-wrap { position: relative; }
+.ent-autocomplete-input-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--c-faint); pointer-events: none; }
+.ent-autocomplete-input-wrap input { padding-left: 2.3rem !important; }
+.ent-autocomplete-list {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 40;
+  background: #fff; border: 1px solid var(--c-border); border-radius: var(--r-md);
+  box-shadow: var(--shadow-md); max-height: 220px; overflow-y: auto;
+}
+.ent-autocomplete-item { padding: 0.55rem 0.8rem; font-size: 0.82rem; cursor: pointer; border-bottom: 1px solid var(--c-border-soft); display: flex; justify-content: space-between; gap: 0.5rem; }
+.ent-autocomplete-item:last-child { border-bottom: none; }
+.ent-autocomplete-item:hover, .ent-autocomplete-item.is-highlighted { background: var(--c-surface-flat); }
+.ent-autocomplete-item small { color: var(--c-faint); white-space: nowrap; }
+.ent-autocomplete-empty { padding: 0.6rem 0.8rem; font-size: 0.8rem; color: var(--c-faint); }
+
+/* ==========================================================================
+   DOCUMENT PREVIEW MODAL — pdf-modal-* pattern from payment_receipts.php /
+   financial_communication.php: preview a generated document before download.
+   ========================================================================== */
+.ent-doc-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 300; padding: 1.5rem; }
+.ent-doc-modal { background: #fff; border-radius: var(--r-lg); width: 100%; max-width: 640px; max-height: 92vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); }
+.ent-doc-modal-header { display: flex; justify-content: space-between; align-items: center; padding: var(--sp-4) var(--sp-5); border-bottom: 1px solid var(--c-border); }
+.ent-doc-modal-body { flex: 1; overflow-y: auto; padding: var(--sp-5); background: var(--c-surface-flat); }
+.ent-doc-modal-footer { display: flex; justify-content: flex-end; gap: var(--sp-3); padding: var(--sp-4) var(--sp-5); border-top: 1px solid var(--c-border); }
+.ent-doc-page { background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,0.1); border-radius: var(--r-sm); padding: 2rem; margin: 0 auto; max-width: 480px; }
+.ent-signature-line { border-top: 1px solid var(--c-ink-soft); margin-top: 2.5rem; padding-top: 0.4rem; font-size: 0.72rem; color: var(--c-muted); }
+
+.ent-tabs { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.ent-tab {
+  padding: 0.55rem 1.05rem; border-radius: var(--r-md);
+  border: 1px solid var(--c-border); background: #fff;
+  font-size: 0.83rem; font-weight: 600; color: var(--c-muted);
+  cursor: pointer; transition: all 0.15s ease;
+}
+.ent-tab.is-active { background: var(--gradient-action); color: #fff; border-color: transparent; }
+.ent-tab:hover:not(.is-active) { border-color: var(--c-cyan); color: var(--c-cyan-dark); }
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+.ent-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200; padding: var(--sp-4);
+}
+/* Genuinely blurs the page behind the modal, not just a dark scrim —
+   used where a modal (e.g. the image crop tool) should feel like it's
+   popped to the front of a softened background, rather than just having
+   a dark layer between it and the page. */
+.ent-modal-overlay--blur {
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+
+/* ---- Image crop tool (avatar picker, etc.) ---- */
+.ent-crop-viewport {
+  position: relative; width: 280px; height: 280px; margin: 0 auto;
+  border-radius: 50%; overflow: hidden; background: #111;
+  cursor: grab; touch-action: none; user-select: none;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.6), 0 8px 24px rgba(0,0,0,0.25);
+}
+.ent-crop-viewport:active { cursor: grabbing; }
+.ent-crop-viewport img { position: absolute; top: 0; left: 0; max-width: none; pointer-events: none; }
+.ent-crop-controls { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.4rem; padding: 0 0.5rem; }
+.ent-crop-slider { flex: 1; accent-color: var(--c-cyan-dark); }
+.ent-crop-hint { text-align: center; font-size: 0.76rem; color: var(--c-faint); margin-top: 0.9rem; }
+.ent-modal {
+  background: #fff; border-radius: var(--r-lg);
+  width: 100%; max-width: 460px; max-height: 90vh; overflow-y: auto;
+}
+.ent-modal-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--sp-5) var(--sp-6); border-bottom: 1px solid var(--c-border);
+}
+.ent-modal-head h3 { margin: 0; font-size: 1.02rem; color: var(--c-ink); }
+.ent-modal-close { background: none; border: none; cursor: pointer; color: var(--c-faint); }
+.ent-modal-body { padding: var(--sp-5) var(--sp-6); }
+.ent-modal-footer {
+  display: flex; justify-content: flex-end; gap: var(--sp-3);
+  padding-top: var(--sp-4); border-top: 1px solid var(--c-border); margin-top: var(--sp-2);
+}
+
+/* ==========================================================================
+   FORM FIELDS
+   ========================================================================== */
+.ent-field { margin-bottom: var(--sp-4); }
+.ent-field label {
+  display: block; font-size: 0.76rem; font-weight: 600;
+  color: var(--c-ink-soft); margin-bottom: var(--sp-2);
+}
+.ent-field input,
+.ent-field select,
+.ent-input,
+.ent-select {
+  width: 100%; padding: 0.55rem 0.7rem;
+  border: 1px solid #d1d5db; border-radius: var(--r-sm);
+  font-size: 0.85rem; outline: none; box-sizing: border-box;
+  background: #fff; font-family: var(--font-sans);
+  transition: border-color 0.15s ease;
+}
+.ent-field input:focus, .ent-field select:focus, .ent-input:focus, .ent-select:focus { border-color: var(--c-cyan); }
+.ent-hint { font-size: 0.7rem; color: var(--c-faint); margin-top: 0.3rem; }
+.ent-error-box {
+  background: var(--c-danger-bg); border: 1px solid #fecaca; color: #b91c1c;
+  font-size: 0.78rem; padding: 0.5rem 0.7rem; border-radius: var(--r-sm); margin-bottom: var(--sp-4);
+}
+.ent-success-box {
+  background: var(--c-success-bg); border: 1px solid #bbf7d0; color: #15803d;
+  font-size: 0.78rem; padding: 0.5rem 0.7rem; border-radius: var(--r-sm); margin-bottom: var(--sp-4);
+}
+
+/* ==========================================================================
+   AVATARS
+   ========================================================================== */
+.ent-avatar {
+  border-radius: 50%; background: var(--gradient-brand);
+  color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ent-avatar--sm { width: 30px; height: 30px; font-size: 0.68rem; }
+.ent-avatar--md { width: 38px; height: 38px; font-size: 0.8rem; }
+.ent-avatar--lg { width: 56px; height: 56px; font-size: 1.1rem; }
+
+/* ==========================================================================
+   EMPTY / LOADING STATES
+   ========================================================================== */
+.ent-empty {
+  text-align: center; padding: var(--sp-8) var(--sp-4);
+  color: var(--c-faint); font-size: 0.85rem;
+}
+.ent-empty svg { color: #d8d0c0; margin-bottom: var(--sp-2); }
+
+.ent-skeleton {
+  background: linear-gradient(90deg, #f3f4f6 25%, #eceef1 37%, #f3f4f6 63%);
+  background-size: 400% 100%;
+  animation: ent-shimmer 1.4s ease infinite;
+  border-radius: var(--r-sm);
+}
+@keyframes ent-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* ==========================================================================
+   APP SHELL — reverted to the original prototype treatment: gradient
+   background + floating shapes, translucent glass header, and the sidebar
+   as a hidden-by-default overlay drawer (not persistent). The KPI cards /
+   tables / toggles / pagination from the interim redesign all stay — this
+   only reverts the color/structure of the shell itself.
+   ========================================================================== */
+.ent-shell { min-height: 100vh; background: var(--gradient-brand); position: relative; overflow-x: hidden; }
+.ent-shell * { box-sizing: border-box; }
+
+.ent-bg-shapes { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; display: block; }
+.ent-shape { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.15); animation: ent-float 15s infinite linear; }
+.ent-shape-1 { width: 350px; height: 350px; top: -175px; right: -175px; }
+.ent-shape-2 { width: 280px; height: 280px; bottom: -140px; left: -140px; animation-delay: -5s; }
+.ent-shape-3 { width: 200px; height: 200px; top: 50%; right: 15%; animation-delay: -10s; }
+@keyframes ent-float { 0%,100% { transform: translateY(0) rotate(0deg); } 33% { transform: translateY(-20px) rotate(120deg); } 66% { transform: translateY(10px) rotate(240deg); } }
+
+.ent-app-content { position: relative; z-index: 5; flex: 1; margin-left: 0; display: flex; flex-direction: column; min-height: 100vh; }
+
+.ent-header {
+  position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 1.8rem; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.3); flex-wrap: wrap; gap: 0.8rem;
+}
+.ent-header-left { display: flex; align-items: center; gap: var(--sp-4); }
+.ent-menu-toggle {
+  border: none; background: rgba(255,255,255,0.6); color: var(--c-cyan-dark); width: 38px; height: 38px;
+  border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.ent-logo-text { font-weight: 700; color: var(--c-ink); font-size: 1.1rem; }
+.ent-logo-text b { color: var(--c-cyan-dark); }
+.ent-page-subtitle { font-size: 0.78rem; color: var(--c-ink-soft); margin-top: 1px; }
+.ent-header-right { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.ent-header-icon-btn { position: relative; background: rgba(255,255,255,0.6); width: 38px; height: 38px; border-radius: 50%; border: none; color: var(--c-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ent-header-icon-btn .ent-dot { position: absolute; top: 6px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--c-danger); border: 1.5px solid #fff; }
+.ent-search { display: flex; align-items: center; background: rgba(255,255,255,0.85); backdrop-filter: blur(4px); border-radius: 999px; padding: 0.35rem 0.8rem 0.35rem 0.9rem; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.3); min-width: 180px; }
+.ent-search input { border: none; outline: none; font-size: 0.8rem; padding: 0.2rem 0; width: 100%; background: transparent; color: var(--c-ink); }
+.ent-search svg { color: var(--c-muted); flex-shrink: 0; }
+.ent-user { display: flex; align-items: center; gap: 0.7rem; background: rgba(255,255,255,0.85); backdrop-filter: blur(4px); padding: 0.2rem 0.9rem 0.2rem 0.2rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); cursor: default; }
+.ent-user-info h4 { margin: 0; font-size: 0.8rem; color: var(--c-ink); font-weight: 600; }
+.ent-user-info p { margin: 0; font-size: 0.65rem; color: var(--c-ink-soft); font-weight: 500; }
+
+.ent-main { flex: 1; padding: 1.8rem; max-width: 1300px; width: 100%; margin: 0 auto; position: relative; z-index: 2; }
+.ent-page-footer { text-align: center; padding: 1.2rem 1rem 1.6rem; color: rgba(255,255,255,0.85); font-size: 0.72rem; position: relative; z-index: 5; }
+
+@media (max-width: 900px) { .ent-app-content { margin-left: 0; } }
+
+/* ---- KPI stat row (5-card row, first one highlighted) — still used by
+   SuperadminDashboard.jsx. Kept alongside the literal .mp-stat-* classes
+   below (used by SecretaryDashboard.jsx) rather than merged into one,
+   since the two pages now intentionally use different exact markup. ---- */
+.ent-kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-4); margin-bottom: var(--sp-6); }
+@media (max-width: 1100px) { .ent-kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .ent-kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.ent-kpi-card {
+  background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 19px; padding: 1.2rem 1.3rem;
+  position: relative; overflow: hidden; min-height: 148px; display: flex; flex-direction: column; gap: 0.9rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04); transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.ent-kpi-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.ent-kpi-card--highlight {
+  background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px; border-color: rgba(255,255,255,0.12);
+}
+.ent-kpi-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; background: rgba(6,182,212,0.12); color: var(--c-cyan-dark); }
+.ent-kpi-card--highlight .ent-kpi-icon { background: rgba(255,255,255,0.08); color: #61becb; }
+.ent-kpi-label { font-size: 0.78rem; color: var(--c-muted); font-weight: 500; }
+.ent-kpi-card--highlight .ent-kpi-label { color: #94a3b8; }
+.ent-kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--c-ink); line-height: 1.15; }
+.ent-kpi-card--highlight .ent-kpi-value { color: #f1f5f9; }
+
+/* ---- Gradient widget card (SuperadminDashboard's "Collection Overview") ---- */
+.ent-widget-card {
+  background: var(--gradient-action); border-radius: var(--r-lg); padding: 1.7rem;
+  color: #fff; position: relative; overflow: hidden; min-height: 190px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 12px 28px -8px rgba(6,182,212,0.4);
+}
+.ent-widget-card::after {
+  content: ''; position: absolute; width: 220px; height: 220px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); top: -80px; right: -60px;
+}
+.ent-widget-chip {
+  width: 38px; height: 28px; border-radius: 6px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.25));
+  border: 1px solid rgba(255,255,255,0.4);
+  position: relative; z-index: 1;
+}
+.ent-widget-label { font-weight: 700; font-size: 1.05rem; position: relative; z-index: 1; }
+.ent-widget-sublabel { font-size: 0.7rem; opacity: 0.8; letter-spacing: 0.04em; text-transform: uppercase; position: relative; z-index: 1; }
+.ent-widget-number { font-size: 1.9rem; font-weight: 800; letter-spacing: 0.03em; margin: 1rem 0; position: relative; z-index: 1; }
+.ent-widget-footer { display: flex; justify-content: space-between; font-size: 0.72rem; opacity: 0.85; position: relative; z-index: 1; }
+.ent-widget-footer b { display: block; font-size: 0.9rem; font-weight: 700; opacity: 1; margin-top: 2px; }
+
+/* ==========================================================================
+   MONEY PAY DASHBOARD STYLES (.mp-*) — literal, verbatim port of the exact
+   HTML/CSS spec provided. Class names and values kept exactly as given,
+   not renamed into the ent- system, so there's zero drift from the source.
+   ========================================================================== */
+
+.mp-stat-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 1.2rem; }
+@media (max-width: 1200px) { .mp-stat-row { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px) { .mp-stat-row { grid-template-columns: repeat(2, 1fr); } }
+
+.mp-stat-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: 19px; padding: 1.2rem 1.3rem;
+  display: flex; flex-direction: column; gap: 0.9rem; min-height: 148px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+.mp-stat-card--dark {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.mp-stat-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; background: rgba(32, 164, 182, 0.12); color: #0e7490; }
+.mp-stat-card--dark .mp-stat-icon { background: rgba(255, 255, 255, 0.08); color: #61becb; }
+.mp-stat-label { font-size: 0.78rem; color: #64748b; font-weight: 500; }
+.mp-stat-card--dark .mp-stat-label { color: #94a3b8; }
+.mp-stat-value { font-size: 1.5rem; font-weight: 700; color: #1e293b; line-height: 1.15; }
+.mp-stat-card--dark .mp-stat-value { color: #f1f5f9; }
+
+.mp-row2 { display: grid; grid-template-columns: 1fr 1.3fr; gap: 1.2rem; margin-bottom: 1.2rem; align-items: start; }
+@media (max-width: 980px) { .mp-row2 { grid-template-columns: 1fr; } }
+
+.mp-panel {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 22px; padding: 1.4rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+.mp-panel-title { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; }
+
+.mp-card-visual {
+  background: linear-gradient(135deg, rgba(215, 236, 245, 0.8), rgba(183, 220, 234, 0.7));
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  border-radius: 16px; padding: 1.15rem 1.3rem; color: #0b5a72;
+  position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.mp-card-visual::after {
+  content: ''; position: absolute; right: -30px; top: -40px; width: 140px; height: 140px;
+  border-radius: 50%; background: rgba(255, 255, 255, 0.25);
+}
+.mp-card-top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+.mp-card-brand { font-size: 1rem; font-weight: 700; color: #0b5a72; }
+.mp-card-kind { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; color: #3d7d94; margin-top: 0.15rem; }
+.mp-card-icon { color: #3d7d94; opacity: 0.8; }
+.mp-card-number { font-size: 1.25rem; font-weight: 600; letter-spacing: 0.08em; color: #0b5a72; margin: 1.6rem 0 1rem; position: relative; z-index: 1; }
+.mp-card-foot { display: flex; justify-content: space-between; position: relative; z-index: 1; }
+.mp-card-foot-label { font-size: 0.6rem; color: #3d7d94; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+.mp-card-foot-value { font-size: 0.85rem; font-weight: 600; color: #0b5a72; }
+
+.mp-progress-row { margin-top: 1.1rem; }
+.mp-progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; color: #0e7490; font-weight: 600; margin-bottom: 0.4rem; }
+.mp-progress-sub { color: #64748b; font-weight: 500; }
+.mp-progress-track { height: 7px; border-radius: 999px; background: rgba(226, 232, 240, 0.6); overflow: hidden; }
+.mp-progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #20a4b6, #61becb); }
+
+.mp-table-wrap { overflow-x: auto; }
+table.mp-table { width: 100%; border-collapse: collapse; }
+table.mp-table th { text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: #94a3b8; font-weight: 600; padding: 0 0 0.6rem 0; }
+table.mp-table th:last-child, table.mp-table td:last-child { text-align: right; }
+table.mp-table td { padding: 0.65rem 0; border-top: 1px solid rgba(226, 232, 240, 0.5); font-size: 0.85rem; }
+.mp-table-name { font-weight: 600; color: #1e293b; }
+.mp-table-muted { color: #94a3b8; font-size: 0.78rem; }
+.mp-table-amount { color: #475569; font-weight: 600; }
+.mp-table-empty { text-align: center; color: #94a3b8; padding: 1.2rem 0; font-size: 0.82rem; }
+
+.mp-combined-card {
+  display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: stretch;
+  background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-radius: 14px; padding: 1.2rem; border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.mp-combined-section { flex: 1 1 200px; min-width: 160px; }
+.mp-separator { flex: 0 0 1px; background: rgba(255, 255, 255, 0.3); align-self: stretch; }
+@media (max-width: 560px) { .mp-separator { display: none; } }
+
+.mp-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+@media (max-width: 560px) { .mp-tiles { grid-template-columns: 1fr; } }
+.mp-tile {
+  background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-radius: 14px; padding: 1rem 0.9rem; border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex; flex-direction: column; gap: 0.5rem; transition: transform 0.15s;
+}
+.mp-tile:hover { transform: translateY(-2px); }
+.mp-tile-icon { color: #20a4b6; }
+.mp-tile-amount { font-size: 1.15rem; font-weight: 700; color: #1e293b; }
+.mp-tile-date { font-size: 0.72rem; color: #94a3b8; }
+.mp-tile-label { font-size: 0.82rem; color: #475569; font-weight: 600; }
+
+.mp-donut-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem; }
+.mp-donut { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.mp-donut svg { display: block; }
+.mp-donut-label { font-size: 0.7rem; font-weight: 600; color: #475569; text-align: center; }
+.mp-donut-value { font-size: 0.85rem; font-weight: 700; color: #1e293b; }
+
+/* ---- Literal header classes (exact port, alongside .ent-header which
+   SuperadminDashboard still uses — kept parallel rather than merged) ---- */
+.mp-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 1.8rem; background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  position: sticky; top: 0; z-index: 10; flex-wrap: wrap; gap: 0.8rem;
+}
+.mp-header-left { display: flex; align-items: center; gap: 0.75rem; }
+.mp-logo { display: flex; align-items: center; gap: 0.6rem; }
+.mp-logo img { width: 40px; height: 40px; border-radius: 8px; object-fit: contain; }
+.mp-logo-text { font-weight: 700; font-size: 1.1rem; color: #1e293b; }
+.mp-header-right { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.mp-search-box {
+  display: flex; align-items: center; background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  border-radius: 999px; padding: 0.35rem 0.8rem 0.35rem 0.9rem; gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3); min-width: 180px;
+}
+.mp-search-box svg { color: #64748b; flex-shrink: 0; }
+.mp-search-input { background: transparent; font-size: 0.8rem; padding: 0.2rem 0; width: 100%; color: #1e293b; border: none; outline: none; }
+.mp-user-profile {
+  display: flex; align-items: center; gap: 0.7rem; background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  padding: 0.2rem 0.9rem 0.2rem 0.2rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: default;
+}
+.mp-avatar {
+  width: 34px; height: 34px; border-radius: 999px;
+  background: linear-gradient(135deg, #20a4b6, #0e7490); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.7rem; flex-shrink: 0;
+}
+.mp-user-info h4 { font-size: 0.8rem; font-weight: 600; color: #1e293b; margin: 0; }
+.mp-user-info p { font-size: 0.65rem; color: #475569; font-weight: 500; margin: 0; }
+
+
+/* ---- Donut / ring progress (Outcome Statistics pattern) ---- */
+.ent-donut-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.2rem; text-align: center; }
+.ent-donut-label { font-size: 0.82rem; color: var(--c-muted); margin-top: 0.5rem; }
+
+/* Stat grid used inside the hero/welcome card */
+.ent-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); }
+@media (max-width: 800px) { .ent-stat-grid { grid-template-columns: repeat(2, 1fr); } }
+.ent-stat-item { background: var(--c-surface-flat); border: 1px solid #eef2f6; border-radius: var(--r-lg); padding: 1rem 0.75rem; text-align: center; transition: transform 0.2s ease; }
+.ent-stat-item:hover { transform: translateY(-2px); }
+.ent-stat-number { font-size: 1.5rem; font-weight: 800; color: var(--c-cyan); }
+.ent-stat-label { font-size: 0.72rem; color: var(--c-muted); margin-top: 0.2rem; }
+
+.ent-mock-flag {
+  font-size: 0.62rem; color: var(--c-cyan-dark); text-transform: uppercase; letter-spacing: 0.05em;
+  border: 1px dashed rgba(6,182,212,0.4); border-radius: var(--r-sm); padding: 0.1rem 0.45rem; margin-left: 0.5rem;
+}
+
+/* Status list (System Status style cards) */
+.ent-status-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--c-border-soft); font-size: 0.85rem; }
+.ent-status-item:last-child { border-bottom: none; }
+.ent-status-label { display: flex; align-items: center; gap: 10px; color: var(--c-ink-soft); }
+.ent-status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c-success); box-shadow: 0 0 8px var(--c-success); flex-shrink: 0; }
+.ent-status-value { font-weight: 700; color: var(--c-ink); }
+
+/* Activity feed */
+.ent-activity-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--c-border-soft); }
+.ent-activity-item:last-child { border-bottom: none; }
+.ent-activity-icon { width: 34px; height: 34px; border-radius: var(--r-md); background: rgba(6,182,212,0.1); color: var(--c-cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ent-activity-title { font-weight: 700; font-size: 0.78rem; color: var(--c-ink); }
+.ent-activity-desc { font-size: 0.78rem; color: var(--c-muted); margin-top: 1px; }
+.ent-activity-time { font-size: 0.7rem; color: var(--c-faint); margin-top: 2px; }
+
+/* Quick-action tiles */
+.ent-quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+.ent-action-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 1.15rem 0.5rem;
+  border-radius: var(--r-lg); background: var(--c-surface-flat); border: 1px solid #eef2f6; cursor: pointer;
+  text-align: center; transition: all 0.2s ease;
+}
+.ent-action-item:hover { background: rgba(6,182,212,0.08); transform: translateY(-2px); }
+.ent-action-icon {
+  width: 42px; height: 42px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center;
+  background: var(--gradient-action); color: #fff;
+}
+.ent-action-label { font-weight: 700; font-size: 0.78rem; color: var(--c-ink-soft); }
+
+/* Category tile (Investment-style pattern) */
+.ent-category-tile { background: var(--c-surface-flat); border: 1px solid #eef2f6; border-radius: var(--r-lg); padding: 1.1rem; }
+.ent-category-tile--clickable { cursor: pointer; transition: all 0.15s ease; }
+.ent-category-tile--clickable:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.ent-category-tile--active { border-color: var(--c-cyan); background: rgba(6,182,212,0.08); box-shadow: 0 0 0 2px rgba(6,182,212,0.15); }
+.ent-category-icon { width: 34px; height: 34px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; background: #fff; margin-bottom: 0.7rem; font-size: 1.1rem; }
+.ent-category-amount { font-size: 1.05rem; font-weight: 800; color: var(--c-ink); }
+.ent-category-date { font-size: 0.68rem; color: var(--c-faint); margin-bottom: 0.6rem; }
+.ent-category-label { font-size: 0.82rem; color: var(--c-ink-soft); font-weight: 600; }
+
+
+   Usage: <button className="ent-tooltip" data-tooltip="Edit User">
+   ========================================================================== */
+.ent-tooltip { position: relative; }
+.ent-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  background: var(--c-ink); color: #fff; font-size: 0.7rem; font-weight: 500;
+  padding: 4px 9px; border-radius: var(--r-sm); white-space: nowrap;
+  opacity: 0; visibility: hidden; transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none; z-index: 50;
+}
+.ent-tooltip:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-2px); }
+
+.ent-spin { animation: ent-spin-rotate 0.9s linear infinite; }
+@keyframes ent-spin-rotate { to { transform: rotate(360deg); } }
+
+/* ==========================================================================
+   FOOTER — exact match of secretary_all_payments.php
+   ========================================================================== */
+
+/* ---- utility classes (replaces Tailwind) ---- */
+.mb-4 { margin-bottom: 1rem; }
+.flex { display: flex; }
+.space-x-4 > * + * { margin-left: 1rem; }
+.text-white { color: #fff; }
+.hover\:text-yellow-300:hover { color: #fcd34d; }
+.transition-colors { transition: color 0.2s ease; }
+
+/* ---- main footer ---- */
+.footer {
+  background: linear-gradient(135deg, #06b6d4, #f59e0b);
+  color: white;
+  padding: 50px 30px 30px;
+  margin-top: 50px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 55px;
+  border-radius: 12px;
+}
+
+.footer-logo-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: white;
+}
+
+.footer-links h4 {
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  color: white;
+  padding-left: 8px;
+  border-left: 3px solid #f59e0b;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-icon {
+  color: #f59e0b;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 35px;
+  margin-top: 35px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+/* ---- responsive: stack columns on narrow screens ---- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .footer {
+    padding: 30px 20px 20px;
+  }
+  .footer-logo img {
+    height: 45px;
+  }
+}
+
+/* ==========================================================================
+   UNDERLINE TABS (fee_settings.php style)
+   ========================================================================== */
+.ent-tabs--underline {
+  display: flex;
+  border-bottom: 2px solid var(--c-border-soft);
+  margin-bottom: 1.5rem;
+  gap: 0;
+}
+
+.ent-tabs--underline .ent-tab--underline {
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  background: transparent;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+}
+
+.ent-tabs--underline .ent-tab--underline:hover {
+  color: var(--c-cyan-dark);
+}
+
+.ent-tabs--underline .ent-tab--underline.is-active {
+  color: var(--c-cyan-dark);
+  border-bottom-color: var(--c-cyan);
+  background: rgba(6, 182, 212, 0.05);
+}

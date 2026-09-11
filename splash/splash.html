@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wendy Private School - FMS</title>
+
+    <style>
+        /*! Tailwind CSS v3.4.1 | MIT License | https://tailwindcss.com */
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb
+        }
+        ::after,
+        ::before {
+            --tw-content: ''
+        }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-feature-settings: normal;
+            font-variation-settings: normal
+        }
+        body {
+            line-height: inherit
+        }
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+        abbr:where([title]) {
+            text-decoration: underline dotted
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+        b,
+        strong {
+            font-weight: bolder
+        }
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-size: 1em
+        }
+        small {
+            font-size: 80%
+        }
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+        sub {
+            bottom: -.25em
+        }
+        sup {
+            top: -.5em
+        }
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+        button,
+        select {
+            text-transform: none
+        }
+        [type=button],
+        [type=reset],
+        [type=submit],
+        button {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none
+        }
+        :-moz-focusring {
+            outline: auto
+        }
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+        progress {
+            vertical-align: baseline
+        }
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+        summary {
+            display: list-item
+        }
+        blockquote,
+        dd,
+        dl,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+            margin: 0
+        }
+        fieldset {
+            margin: 0;
+            padding: 0
+        }
+        legend {
+            padding: 0
+        }
+        menu,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+        dialog {
+            padding: 0
+        }
+        textarea {
+            resize: vertical
+        }
+        input::placeholder,
+        textarea::placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+        [role=button],
+        button {
+            cursor: pointer
+        }
+        :disabled {
+            cursor: default
+        }
+        audio,
+        canvas,
+        embed,
+        iframe,
+        img,
+        object,
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+        img,
+        video {
+            max-width: 100%;
+            height: auto
+        }
+        [hidden] {
+            display: none
+        }
+
+        *,
+        ::before,
+        ::after {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+        }
+        ::backdrop {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+        }
+
+        .fixed {
+            position: fixed
+        }
+        .absolute {
+            position: absolute
+        }
+        .relative {
+            position: relative
+        }
+        .bottom-0 {
+            bottom: 0px
+        }
+        .left-0 {
+            left: 0px
+        }
+        .right-0 {
+            right: 0px
+        }
+        .top-0 {
+            top: 0px
+        }
+        .z-10 {
+            z-index: 10
+        }
+
+        .flex {
+            display: flex
+        }
+        .min-h-screen {
+            min-height: 100vh
+        }
+        .w-full {
+            width: 100%
+        }
+        .max-w-md {
+            max-width: 28rem
+        }
+        .flex-col {
+            flex-direction: column
+        }
+        .items-center {
+            align-items: center
+        }
+        .justify-center {
+            justify-content: center
+        }
+        .justify-end {
+            justify-content: flex-end
+        }
+        .overflow-hidden {
+            overflow: hidden
+        }
+        .overflow-x-hidden {
+            overflow-x: hidden
+        }
+        .rounded-2xl {
+            border-radius: 1rem
+        }
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .bg-white\/10 {
+            background-color: rgb(255 255 255 / 0.1)
+        }
+        .bg-white\/5 {
+            background-color: rgb(255 255 255 / 0.05)
+        }
+        .bg-white\/30 {
+            background-color: rgb(255 255 255 / 0.3)
+        }
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+        }
+        .bg-gradient-to-br {
+            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops))
+        }
+        .bg-gradient-to-r {
+            background-image: linear-gradient(to right, var(--tw-gradient-stops))
+        }
+        .from-cyan-500 {
+            --tw-gradient-from: #06b6d4 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(6 182 212 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+        .from-cyan-600 {
+            --tw-gradient-from: #0891b2 var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(8 145 178 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+        .to-amber-300 {
+            --tw-gradient-to: #fcd34d var(--tw-gradient-to-position)
+        }
+        .to-teal-600 {
+            --tw-gradient-to: #0d9488 var(--tw-gradient-to-position)
+        }
+
+        .p-10 {
+            padding: 2.5rem
+        }
+        .p-4 {
+            padding: 2rem
+        }
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem
+        }
+        .pb-14 {
+            padding-bottom: 3.5rem
+        }
+        .pt-2 {
+            padding-top: 0.5rem
+        }
+        .mt-6 {
+            margin-top: 1.5rem
+        }
+        .mt-4 {
+            margin-top: 1rem
+        }
+        .mt-1 {
+            margin-top: 0.25rem
+        }
+        .mb-6 {
+            margin-bottom: 1.5rem
+        }
+        .mb-3 {
+            margin-bottom: 0.75rem
+        }
+
+        .text-center {
+            text-align: center
+        }
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem
+        }
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem
+        }
+        .text-xs {
+            font-size: 0.75rem;
+            line-height: 1rem
+        }
+        .font-bold {
+            font-weight: 700
+        }
+        .font-medium {
+            font-weight: 500
+        }
+        .leading-relaxed {
+            line-height: 1.625
+        }
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity))
+        }
+        .text-white\/80 {
+            color: rgb(255 255 255 / 0.8)
+        }
+        .text-black\/90 {
+            color: rgb(0 0 0 / 0.9)
+        }
+
+        .drop-shadow-xl {
+            --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+        .drop-shadow {
+            --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+        .shadow-inner {
+            --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+            --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+        .shadow-xl {
+            --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+        .shadow-\[0_0_10px_rgba\(255\2c 255\2c 255\2c 0\.5\)\] {
+            --tw-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+        .backdrop-blur-xl {
+            --tw-backdrop-blur: blur(24px);
+            -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+            backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+        }
+        .backdrop-blur-2xl {
+            --tw-backdrop-blur: blur(40px)
+        }
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+        .duration-300 {
+            transition-duration: 300ms
+        }
+        .h-1\.5 {
+            height: 0.375rem
+        }
+        .h-1 {
+            height: 0.25rem
+        }
+
+        /* ============================================================
+           CUSTOM ENHANCEMENTS
+           ============================================================ */
+
+        /* Thin white line framing the whole splash window. A border on
+           body itself gets covered at the bottom edge by the fixed-
+           position footer (which paints its own background on top of
+           whatever's underneath it) — so this uses a dedicated overlay
+           that sits above everything, consistent on all 4 sides. */
+        html, body { height: 100%; }
+        .window-frame {
+            position: fixed; inset: 0;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            pointer-events: none;
+            z-index: 999999;
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes logoFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* --- Background Shapes --- */
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            animation: float 15s infinite linear;
+        }
+
+        .shape-1 {
+            width: 350px;
+            height: 350px;
+            top: -175px;
+            right: -175px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 280px;
+            height: 280px;
+            bottom: -140px;
+            left: -140px;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: 15%;
+            animation-delay: -10s;
+        }
+
+        /* --- Branding Panel --- */
+        .brand-panel {
+            animation: slideIn 0.6s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-panel:hover {
+            transform: translateY(-3px);
+        }
+
+        .logo-container {
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.03);
+        }
+
+        .logo {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* --- Splash Screen Loading Bar --- */
+        .progress-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: white;
+            border-radius: 9999px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            transition: width 0.15s ease-out;
+        }
+
+        /* --- Utilities --- */
+        * {
+            outline: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .logo {
+                width: 180px;
+                height: 180px;
+            }
+            .brand-panel {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-x-hidden bg-gradient-to-br from-cyan-500 to-amber-300 pb-14">
+
+    <div class="window-frame"></div>
+
+    <!-- ============================================================
+    BACKGROUND SHAPES
+    ============================================================ -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- ============================================================
+    SPLASH SCREEN CONTENT
+    ============================================================ -->
+    <div class="flex flex-col items-center w-full max-w-md">
+
+        <!-- Brand Card -->
+        <div class="brand-panel rounded-2xl shadow-xl w-full p-10 relative z-10 transition-all duration-300">
+
+            <!-- Inner glow accent -->
+            <div class="absolute right-0 top-0 bottom-0 w-[2px] bg-white/25"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-[1px] translate-x-[2px] bg-cyan-400/80 shadow-[0_0_8px_2px_rgba(0,255,255,0.35)]"></div>
+
+            <!-- Logo -->
+            <div class="logo-container mb-6 relative z-10">
+                <img class="logo" src="../assets/logo.png" alt="FMS logo" />
+            </div>
+
+            <!-- Branding Text -->
+            <div class="text-center relative z-10">
+                <h1 class="text-xl font-bold mb-3 text-white drop-shadow">F M S</h1>
+                <p class="text-sm text-black/90 font-medium leading-relaxed drop-shadow">
+                    Finance Management System
+                </p>
+            </div>
+        </div>
+
+        <!-- Loading Bar & Percentage -->
+        <div class="w-full mt-6 px-2">
+            <!-- Progress Track -->
+            <div class="progress-track w-full h-1.5">
+                <div id="progressBar" class="progress-fill" style="width: 0%;"></div>
+            </div>
+            <!-- Percentage (right-aligned, small font) -->
+            <div class="flex justify-end mt-1">
+                <span id="progressPercentage" class="text-xs text-white/80 font-medium">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+
+    <!-- ============================================================
+    JAVASCRIPT — Splash Screen Loading Logic
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            const progressBar = document.getElementById('progressBar');
+            const progressPercentage = document.getElementById('progressPercentage');
+
+            // Maps the real status strings main.js sends (from db.js's
+            // onProgress() calls during actual database initialization) to
+            // a progress percentage — this bar reflects real startup steps
+            // completing, not a timer. Kept in sync with db.js's exact
+            // current onProgress() call sites.
+            const STEP_PROGRESS = {
+                'Opening local database...': 15,
+                'Preparing collections...': 30,
+                'Schema changed — resetting local dev database...': 35,
+                'Checking user accounts...': 50,
+                'Creating default accounts...': 65,
+                'Checking fee catalog...': 80,
+                'Seeding starting fee catalog...': 90,
+                'Ready': 100
+            };
+
+            function setProgress(status) {
+                const pct = STEP_PROGRESS[status] ?? 50; // unknown status: show midway rather than 0
+                progressBar.style.width = pct + '%';
+                progressPercentage.textContent = pct + '%';
+            }
+
+            if (window.splashAPI) {
+                window.splashAPI.onStatus(setProgress);
+            }
+        })();
+    </script>
+
+</body>
+</html>

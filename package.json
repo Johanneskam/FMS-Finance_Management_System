@@ -1,0 +1,62 @@
+{
+  "name": "fms-desktop",
+  "productName": "Fee Management System",
+  "version": "0.1.0",
+  "description": "Serverless, local-first P2P Fee Management System desktop app",
+  "main": "main.js",
+  "private": true,
+  "engines": {
+    "node": "16.20.2",
+    "npm": "8.19.4"
+  },
+  "scripts": {
+    "build:renderer": "esbuild renderer/src/main.jsx --bundle --outfile=renderer/dist/bundle.js --loader:.jsx=jsx",
+    "watch:renderer": "esbuild renderer/src/main.jsx --bundle --outfile=renderer/dist/bundle.js --loader:.jsx=jsx --watch",
+    "start": "npm run build:renderer && electron .",
+    "seed:test-data": "electron . --seed-test-data",
+    "dev": "npm run build:renderer && electron . --dev",
+    "build:win": "npm run build:renderer && electron-builder --win --x64"
+  },
+  "dependencies": {
+    "firebase": "10.7.1",
+    "jspdf": "2.5.1",
+    "jsqr": "1.4.0",
+    "lokijs": "1.5.12",
+    "lucide-react": "0.383.0",
+    "pdf-lib": "^1.17.1",
+    "qrcode": "1.5.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "recharts": "2.10.3",
+    "rxdb": "14.17.1",
+    "rxjs": "7.8.1",
+    "tesseract.js": "5.1.0",
+    "xlsx": "0.18.5"
+  },
+  "devDependencies": {
+    "electron": "22.3.27",
+    "electron-builder": "23.6.0",
+    "esbuild": "0.17.19"
+  },
+  "build": {
+    "appId": "com.fms.desktop",
+    "productName": "Fee Management System",
+    "win": {
+      "target": "nsis",
+      "requestedExecutionLevel": "asInvoker",
+      "icon": "assets/icon.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "db/**/*",
+      "splash/**/*",
+      "assets/**/*",
+      "renderer/index.html",
+      "renderer/styles/**/*",
+      "renderer/assets/**/*",
+      "renderer/dist/**/*",
+      "package.json"
+    ]
+  }
+}
