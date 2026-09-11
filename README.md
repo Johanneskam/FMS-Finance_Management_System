@@ -38,16 +38,16 @@ Built with **Electron + React + RxDB**, syncing peer-to-peer across three physic
 > *Add screenshots here — a few suggestions that show range well: the secretary payment screen, the waiver/discount flow, the Full Financial Report with its charts, and one PDF export (the Student Ledger Statement or the Yearly Report work well).*
 
 <p align="center">
-  <img src="/assets/immmmg/setup.png" width="800" alt="Dashboard" />
+  <img src="/assets/immmmg/setup.PNG" width="800" alt="Dashboard" />
 </p>
 
 <p align="center">
-  <img src="/assets/immmmg/login.png" width="400" alt="Login" />
-  <img src="/assets/immmmg/dashboard.png" width="400" alt="Secretary dashboard" />
-  <img src="/assets/immmmg/adminportalsidebar.png" width="400" alt="Admin portal" />
-  <img src="/assets/immmmg/usermanagementqr.png" width="400" alt="User management + QR credentials" />
-  <img src="/assets/immmmg/studentledger.png" width="400" alt="Student ledger" />
-  <img src="/assets/immmmg/backups.png" width="400" alt="Backups panel" />
+  <img src="/assets/immmmg/login.PNG" width="400" alt="Login" />
+  <img src="/assets/immmmg/dashboard.PNG" width="400" alt="Secretary dashboard" />
+  <img src="/assets/immmmg/adminportalsidebar.PNG" width="400" alt="Admin portal" />
+  <img src="/assets/immmmg/usermanagementqr.PNG" width="400" alt="User management + QR credentials" />
+  <img src="/assets/immmmg/studentledger.PNG" width="400" alt="Student ledger" />
+  <img src="/assets/immmmg/backups.PNG" width="400" alt="Backups panel" />
 </p>
 
 ---
